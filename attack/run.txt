@@ -1,0 +1,259 @@
+
+# 84 P_CSG FGSM Attack Final 001 ex01
+
+
+cd /home/slt/gitlab_file/transfuser/carla
+conda activate transfuser2
+DISPLAY= CUDA_VISIBLE_DEVICES=1 ./CarlaUE4.sh --world-port=2016 --tm-port=8016 -opengl
+# CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2016 --tm-port=8016 -windowed -ResX=640 -ResY=480 -fps=15
+
+cd /home/zhk/project/vae
+conda activate p_csg
+
+export CARLA_ROOT=${1:-/home/slt/gitlab_file/transfuser/carla}
+export WORK_DIR=${2:-/home/zhk/project/vae}
+
+export CARLA_SERVER=${CARLA_ROOT}/CarlaUE4.sh
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard/leaderboard/agents
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/scenario_runner
+
+export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg_fgsm_attack_001.py
+export AGENT_CONFIG=/home/zhk/project/vae/model_ckpt/p_csg_final/ #${WORK_DIR}/model_ckpt/p_csg
+export SCENARIOS=${WORK_DIR}/leaderboard/data/scenarios/town05_all_scenarios.json
+export ROUTES=${WORK_DIR}/leaderboard/data/evaluation_routes/routes_town05_long.xml
+export CHECKPOINT=${WORK_DIR}/results/pami/160_768/fgsm_final_001_84.json
+
+CUDA_VISIBLE_DEVICES=1 python3 leaderboard/leaderboard/leaderboard_evaluator.py \
+--scenarios=${SCENARIOS} \
+--routes=${ROUTES} \
+--repetitions=1 \
+--track=SENSORS \
+--checkpoint=${CHECKPOINT} \
+--agent=${TEAM_AGENT} \
+--agent-config=${AGENT_CONFIG} \
+--debug=0 \
+--record=record \
+--resume=True \
+--port=2016 \
+--trafficManagerPort=8016 \
+--timeout=180.0
+
+
+# 85 P_CSG FGSM Attack Final 001 ex02
+
+
+cd /home/slt/gitlab_file/transfuser/carla
+conda activate transfuser2
+DISPLAY= CUDA_VISIBLE_DEVICES=1 ./CarlaUE4.sh --world-port=2018 --tm-port=8018 -opengl
+# CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2016 --tm-port=8016 -windowed -ResX=640 -ResY=480 -fps=15
+
+cd /home/zhk/project/vae
+conda activate p_csg
+
+export CARLA_ROOT=${1:-/home/slt/gitlab_file/transfuser/carla}
+export WORK_DIR=${2:-/home/zhk/project/vae}
+
+export CARLA_SERVER=${CARLA_ROOT}/CarlaUE4.sh
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard/leaderboard/agents
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/scenario_runner
+
+export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg_fgsm_attack_001.py
+export AGENT_CONFIG=/home/zhk/project/vae/model_ckpt/p_csg_final/ #${WORK_DIR}/model_ckpt/p_csg
+export SCENARIOS=${WORK_DIR}/leaderboard/data/scenarios/town05_all_scenarios.json
+export ROUTES=${WORK_DIR}/leaderboard/data/evaluation_routes/routes_town05_long.xml
+export CHECKPOINT=${WORK_DIR}/results/pami/160_768/fgsm_final_001_85.json
+
+CUDA_VISIBLE_DEVICES=1 python3 leaderboard/leaderboard/leaderboard_evaluator.py \
+--scenarios=${SCENARIOS} \
+--routes=${ROUTES} \
+--repetitions=1 \
+--track=SENSORS \
+--checkpoint=${CHECKPOINT} \
+--agent=${TEAM_AGENT} \
+--agent-config=${AGENT_CONFIG} \
+--debug=0 \
+--record=record \
+--resume=True \
+--port=2018 \
+--trafficManagerPort=8018 \
+--timeout=180.0
+
+# 86 P_CSG FGSM Attack Final 001 ex03
+
+
+cd /home/slt/gitlab_file/transfuser/carla
+conda activate transfuser2
+DISPLAY= CUDA_VISIBLE_DEVICES=1 ./CarlaUE4.sh --world-port=2020 --tm-port=8020 -opengl
+# CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2016 --tm-port=8016 -windowed -ResX=640 -ResY=480 -fps=15
+
+cd /home/zhk/project/vae
+conda activate p_csg
+
+export CARLA_ROOT=${1:-/home/slt/gitlab_file/transfuser/carla}
+export WORK_DIR=${2:-/home/zhk/project/vae}
+
+export CARLA_SERVER=${CARLA_ROOT}/CarlaUE4.sh
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard/leaderboard/agents
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/scenario_runner
+
+export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg_fgsm_attack_001.py
+export AGENT_CONFIG=/home/zhk/project/vae/model_ckpt/p_csg_final/ #${WORK_DIR}/model_ckpt/p_csg
+export SCENARIOS=${WORK_DIR}/leaderboard/data/scenarios/town05_all_scenarios.json
+export ROUTES=${WORK_DIR}/leaderboard/data/evaluation_routes/routes_town05_long.xml
+export CHECKPOINT=${WORK_DIR}/results/pami/160_768/fgsm_final_001_86.json
+
+CUDA_VISIBLE_DEVICES=1 python3 leaderboard/leaderboard/leaderboard_evaluator.py \
+--scenarios=${SCENARIOS} \
+--routes=${ROUTES} \
+--repetitions=1 \
+--track=SENSORS \
+--checkpoint=${CHECKPOINT} \
+--agent=${TEAM_AGENT} \
+--agent-config=${AGENT_CONFIG} \
+--debug=0 \
+--record=record \
+--resume=True \
+--port=2020 \
+--trafficManagerPort=8020 \
+--timeout=180.0
+
+# 87 P_CSG Dot Attack Final ex01
+
+
+cd /home/slt/gitlab_file/transfuser/carla
+conda activate transfuser2
+DISPLAY= CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2022 --tm-port=8022 -opengl
+# CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2016 --tm-port=8016 -windowed -ResX=640 -ResY=480 -fps=15
+
+cd /home/zhk/project/vae
+conda activate p_csg
+
+export CARLA_ROOT=${1:-/home/slt/gitlab_file/transfuser/carla}
+export WORK_DIR=${2:-/home/zhk/project/vae}
+
+export CARLA_SERVER=${CARLA_ROOT}/CarlaUE4.sh
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard/leaderboard/agents
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/scenario_runner
+
+export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg_dot_attack.py
+export AGENT_CONFIG=/home/zhk/project/vae/model_ckpt/p_csg_final/ #${WORK_DIR}/model_ckpt/p_csg
+export SCENARIOS=${WORK_DIR}/leaderboard/data/scenarios/town05_all_scenarios.json
+export ROUTES=${WORK_DIR}/leaderboard/data/evaluation_routes/routes_town05_long.xml
+export CHECKPOINT=${WORK_DIR}/results/pami/160_768/dot_final_87.json
+
+CUDA_VISIBLE_DEVICES=0 python3 leaderboard/leaderboard/leaderboard_evaluator.py \
+--scenarios=${SCENARIOS} \
+--routes=${ROUTES} \
+--repetitions=1 \
+--track=SENSORS \
+--checkpoint=${CHECKPOINT} \
+--agent=${TEAM_AGENT} \
+--agent-config=${AGENT_CONFIG} \
+--debug=0 \
+--record=record \
+--resume=True \
+--port=2022 \
+--trafficManagerPort=8022 \
+--timeout=180.0
+
+# 88 P_CSG Dot Attack Final ex02
+
+
+cd /home/slt/gitlab_file/transfuser/carla
+conda activate transfuser2
+DISPLAY= CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2024 --tm-port=8024 -opengl
+# CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2016 --tm-port=8016 -windowed -ResX=640 -ResY=480 -fps=15
+
+cd /home/zhk/project/vae
+conda activate p_csg
+
+export CARLA_ROOT=${1:-/home/slt/gitlab_file/transfuser/carla}
+export WORK_DIR=${2:-/home/zhk/project/vae}
+
+export CARLA_SERVER=${CARLA_ROOT}/CarlaUE4.sh
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard/leaderboard/agents
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/scenario_runner
+
+export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg_dot_attack.py
+export AGENT_CONFIG=/home/zhk/project/vae/model_ckpt/p_csg_final/ #${WORK_DIR}/model_ckpt/p_csg
+export SCENARIOS=${WORK_DIR}/leaderboard/data/scenarios/town05_all_scenarios.json
+export ROUTES=${WORK_DIR}/leaderboard/data/evaluation_routes/routes_town05_long.xml
+export CHECKPOINT=${WORK_DIR}/results/pami/160_768/dot_final_88.json
+
+CUDA_VISIBLE_DEVICES=0 python3 leaderboard/leaderboard/leaderboard_evaluator.py \
+--scenarios=${SCENARIOS} \
+--routes=${ROUTES} \
+--repetitions=1 \
+--track=SENSORS \
+--checkpoint=${CHECKPOINT} \
+--agent=${TEAM_AGENT} \
+--agent-config=${AGENT_CONFIG} \
+--debug=0 \
+--record=record \
+--resume=True \
+--port=2024 \
+--trafficManagerPort=8024 \
+--timeout=180.0
+
+# 89 P_CSG Dot Attack Final ex03
+
+
+cd /home/slt/gitlab_file/transfuser/carla
+conda activate transfuser2
+DISPLAY= CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2026 --tm-port=8026 -opengl
+# CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2016 --tm-port=8016 -windowed -ResX=640 -ResY=480 -fps=15
+
+cd /home/zhk/project/vae
+conda activate p_csg
+
+export CARLA_ROOT=${1:-/home/slt/gitlab_file/transfuser/carla}
+export WORK_DIR=${2:-/home/zhk/project/vae}
+
+export CARLA_SERVER=${CARLA_ROOT}/CarlaUE4.sh
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard/leaderboard/agents
+export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/scenario_runner
+
+export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg_dot_attack.py
+export AGENT_CONFIG=/home/zhk/project/vae/model_ckpt/p_csg_final/ #${WORK_DIR}/model_ckpt/p_csg
+export SCENARIOS=${WORK_DIR}/leaderboard/data/scenarios/town05_all_scenarios.json
+export ROUTES=${WORK_DIR}/leaderboard/data/evaluation_routes/routes_town05_long.xml
+export CHECKPOINT=${WORK_DIR}/results/pami/160_768/dot_final_89.json
+
+CUDA_VISIBLE_DEVICES=0 python3 leaderboard/leaderboard/leaderboard_evaluator.py \
+--scenarios=${SCENARIOS} \
+--routes=${ROUTES} \
+--repetitions=1 \
+--track=SENSORS \
+--checkpoint=${CHECKPOINT} \
+--agent=${TEAM_AGENT} \
+--agent-config=${AGENT_CONFIG} \
+--debug=0 \
+--record=record \
+--resume=True \
+--port=2026 \
+--trafficManagerPort=8026 \
+--timeout=180.0

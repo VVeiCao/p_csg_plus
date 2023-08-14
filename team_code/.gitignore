@@ -1,0 +1,9 @@
+# log files
+output
+*.out
+attack_logs
+#reconstruction folders
+topdown_ext_img
+topdown_img
+front_img
+
