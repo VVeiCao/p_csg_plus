@@ -186,6 +186,7 @@ carla
 frames
 attack/InterFuser/data
 figures/Attack
+data_collection_attack
 
 # segmentation results
 topdown_img
