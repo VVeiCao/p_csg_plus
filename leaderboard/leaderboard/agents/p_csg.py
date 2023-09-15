@@ -35,7 +35,7 @@ def get_entry_point():
 
 
 class PCSGAgent(autonomous_agent.AutonomousAgent):
-    def setup(self, path_to_conf_file):
+    def setup(self, path_to_conf_file, route):
         self.lidar_processed = list()
         self.track = autonomous_agent.Track.SENSORS
         self.config_path = path_to_conf_file
@@ -58,7 +58,7 @@ class PCSGAgent(autonomous_agent.AutonomousAgent):
         self.net.cuda()
         self.net.eval()
         self.net.inference = True
-
+        self.route = route
         if self.config.save_frames:
             now = datetime.datetime.now()
             string = 'Town05_long_'  # pathlib.Path(os.environ['ROUTES']).stem + '_'
@@ -70,6 +70,7 @@ class PCSGAgent(autonomous_agent.AutonomousAgent):
             self.save_path.mkdir(parents=True, exist_ok=False)
 
             (self.save_path / 'rgb_front').mkdir(parents=True, exist_ok=False)
+            (self.save_path / 'rgb').mkdir(parents=True, exist_ok=False)
             (self.save_path / 'seg_front').mkdir(parents=True, exist_ok=False)
             (self.save_path / 'seg_topdown').mkdir(parents=True, exist_ok=False)
             (self.save_path / 'meta').mkdir(parents=True, exist_ok=False)
@@ -312,6 +313,10 @@ class PCSGAgent(autonomous_agent.AutonomousAgent):
             print("Detected agent being stuck. Move for frame: ", self.forced_move)
             is_stuck = True
             self.forced_move += 1
+        elif self.stuck_detector > self.config.block_threshold and self.forced_move < self.config.creep_duration:
+            is_stuck = True
+            self.forced_move += 1.25
+            self.emergency_stop = False
 
 
 
@@ -321,6 +326,7 @@ class PCSGAgent(autonomous_agent.AutonomousAgent):
         self.global_steer = steer
         self.global_throttle = throttle
         self.global_brake = brake
+
         if gt_velocity < 0.1:  # 0.1 is just an arbitrary low number to threshold when the car is stopped
             self.stuck_detector += 1
         elif gt_velocity > 0.1 and is_stuck is False:
@@ -354,7 +360,8 @@ class PCSGAgent(autonomous_agent.AutonomousAgent):
         frame = self.step // self.config.save_frequency
 
         output = self.unified[-1].squeeze(0).permute(1, 2, 0).cpu().numpy()
-        Image.fromarray(np.uint8(output)).save(self.save_path / 'rgb' / ('%04d.png' % frame))
+        filename = f"{self.route}_{frame:04d}.png"
+        Image.fromarray(np.uint8(output)).save(self.save_path / 'rgb' / filename)
 
         # Image.fromarray(cm.gist_earth(self.lidar_processed[0].cpu().numpy()[0, 0], bytes=True)).save(
         #     self.save_path / 'lidar_0' / ('%04d.png' % frame))

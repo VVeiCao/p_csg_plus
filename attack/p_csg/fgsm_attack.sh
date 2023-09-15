@@ -1,5 +1,7 @@
-export CARLA_ROOT=${1:-/home/ubuntu/projects/P_CSG/carla}
-export WORK_DIR=${2:-/home/ubuntu/projects/P_CSG}
+conda activate P_CSG
+
+export CARLA_ROOT=${1:-/home/ubuntu/projects/P_CSG/carla} # change to carla root
+export WORK_DIR=${2:-/home/ubuntu/projects/P_CSG} # change to repo root
 
 export CARLA_SERVER=${CARLA_ROOT}/CarlaUE4.sh
 export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
@@ -9,17 +11,16 @@ export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard
 export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/leaderboard/leaderboard/agents
 export PYTHONPATH=$PYTHONPATH:${WORK_DIR}/scenario_runner
 
-export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg.py
-export AGENT_CONFIG=${WORK_DIR}/model_ckpts/v2/
+export TEAM_AGENT=${WORK_DIR}/leaderboard/agents/p_csg_fgsm_attack_001.py
+export AGENT_CONFIG=${WORK_DIR}/model_ckpts/ckpt_final
 export SCENARIOS=${WORK_DIR}/leaderboard/data/scenarios/town05_all_scenarios.json
 export ROUTES=${WORK_DIR}/leaderboard/data/evaluation_routes/routes_town05_long.xml
-export CHECKPOINT=${WORK_DIR}/results/v2_e43_t6.json
-export SAVE_PATH=${WORK_DIR}/frames/
+export CHECKPOINT=${WORK_DIR}/results/pcsg_fgsm_attack.json # change to your checkpoint path
 
 CUDA_VISIBLE_DEVICES=0 python3 leaderboard/leaderboard/leaderboard_evaluator.py \
 --scenarios=${SCENARIOS} \
 --routes=${ROUTES} \
---repetitions=3 \
+--repetitions=1 \
 --track=SENSORS \
 --checkpoint=${CHECKPOINT} \
 --agent=${TEAM_AGENT} \
@@ -27,6 +28,6 @@ CUDA_VISIBLE_DEVICES=0 python3 leaderboard/leaderboard/leaderboard_evaluator.py 
 --debug=0 \
 --record=record \
 --resume=True \
---port=20000 \
---trafficManagerPort=20500 \
---timeout=600.0
+--port=2002 \
+--trafficManagerPort=8002 \
+--timeout=180.0

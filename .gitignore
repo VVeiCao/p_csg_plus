@@ -166,6 +166,8 @@ output
 attack_logs
 attack/p_csg/logs/loss_attack_pcsg_test
 attack/p_csg/logs
+
+
 # others 
 input
 model_ckpt
@@ -181,9 +183,20 @@ attack/p_csg/logs/loss_attack_pcsg_final
 model_ckpts
 carla
 frames
+attack/InterFuser/data
+
 # segmentation results
 topdown_img
 front_img
 topdown_ext_img
+
 # execution
 run.sh
+
+# backup
+leaderboard/leaderboard/agents/backup
+leaderboard/data/evaluation_routes/routes_town05_long_vis.xml
+attack/InterFuser/leaderboard/team_code/backup
+attack/backup
+
+upload_v21

@@ -1,30 +1,7 @@
-# import argparse
-# import json
-# from torchvision import transforms
-# import PIL
+
 import copy
-# import os
-# from tqdm import tqdm
-# import numpy as np
-# import torch
-# from torch.utils.data import DataLoader
-# import torch.optim as optim
-# from v3.conf.config import GlobalConfig
-# from v3.models.p_csg import P_CSG
-# from v3.utils.utils import calculate_penalty, log_name
-# # from late_fusion.model import LateFusion
-# import torch.nn.functional as F
-# from vae.dataset.data_new import CARLA_Data,CARLA_Data_Stop,CARLA_Data_Light
-# import random
-# import matplotlib.pyplot as plt
-# import pdb
 from PIL import Image
-# import torchvision.models as models
-# import torch
-# import torch.nn as nn
-# import torch.nn.functional as F
-# from tqdm import tqdm
-# from torch.utils.tensorboard import SummaryWriter
+
 
 from torchvision import transforms
 import math
@@ -309,7 +286,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--device', type=str, default='cuda', help='Device to use')
 parser.add_argument('--epochs', type=int, default=1000, help='Number of total epochs')
 parser.add_argument('--lr', type=float, default=1e-4, help='Learning rate.')
-parser.add_argument('--logdir', type=str, default='/home/zhk/project/vae/model_ckpt/p_csg_final', help='Directory to best model.')
+parser.add_argument('--logdir', type=str, default='model_ckpts/ckpt_final', help='Directory to best model.')
 parser.add_argument('--save_every', type=int, default=5, help='Validation frequency (epochs).')
 parser.add_argument('--batch_size', type=int, default=8, help='Batch size')
 parser.add_argument('--name', type=str, default='loss_attack_pcsg_final')

@@ -1,0 +1,87 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "interfuser",
+      "type": "python",
+      "request": "launch",
+      "program": "leaderboard/leaderboard/leaderboard_evaluator.py",
+      "console": "integratedTerminal",
+      "cwd": "/home/ubuntu/projects/P_CSG/attack/InterFuser",
+      "justMyCode": true,
+      "args": [
+        "--scenarios", "leaderboard/data/scenarios/town05_all_scenarios.json",
+        "--routes", "/home/ubuntu/projects/P_CSG/leaderboard/data/evaluation_routes/routes_town05_long_vis.xml",
+        "--repetitions", "1",
+        "--track", "SENSORS",
+        "--checkpoint", "/home/ubuntu/projects/P_CSG/results/interfuse_wo_safety_dot_vis1.json",
+        "--agent", "leaderboard/team_code/interfuser_agent_loss_attack_no_safety.py",
+        "--agent-config", "leaderboard/team_code/interfuser_config.py",
+        "--debug", "0",
+        "--record", "data/eval",
+        "--resume", "True",
+        "--port", "2038",
+        "--trafficManagerPort", "8038"
+    ]
+    
+    
+
+    },
+    {
+      "name": "p_csg_vis",
+      "type": "python",
+      "request": "launch",
+      "program": "leaderboard/leaderboard/leaderboard_evaluator.py",
+      "console": "integratedTerminal",
+      "cwd": "/home/ubuntu/projects/P_CSG",
+      "justMyCode": true,
+      "args": [
+        "--scenarios", "/home/ubuntu/projects/P_CSG/attack/InterFuser/leaderboard/data/scenarios/town05_all_scenarios.json",
+        "--routes", "leaderboard/data/evaluation_routes/routes_town05_long.xml",
+        "--repetitions", "1",
+        "--track", "SENSORS",
+        "--checkpoint", "/home/ubuntu/projects/P_CSG/results/pcsg_wo_vis3.json",
+        "--agent", "leaderboard/agents/p_csg.py",
+        "--agent-config", "model_ckpts/ckpt_final",
+        "--debug", "0",
+        "--record", "record",
+        "--resume", "True",
+        "--port", "2020",
+        "--trafficManagerPort", "8020",
+        "--timeout","180"
+    ]
+    
+    
+
+    },
+    {
+      "name": "transfuser_vis",
+      "type": "python",
+      "request": "launch",
+      "program": "leaderboard/leaderboard/leaderboard_evaluator.py",
+      "console": "integratedTerminal",
+      "cwd": "/home/ubuntu/projects/P_CSG/attack/transfuser",
+      "justMyCode": true,
+      "args": [
+        "--scenarios=/home/ubuntu/projects/P_CSG/leaderboard/data/scenarios/town05_all_scenarios.json",
+        "--routes=/home/ubuntu/projects/P_CSG/leaderboard/data/evaluation_routes/routes_town05_long.xml",
+        "--repetitions=1",
+        "--track=SENSORS",
+        "--checkpoint=/home/ubuntu/projects/P_CSG/results/transfuser_loss_vis5.json",
+        "--agent=team_code_transfuser/loss_attack_agent.py",
+        "--agent-config=model_ckpt/transfuser2",
+        "--debug=0",
+        "--resume=1",
+        "--port=2042",
+        "--trafficManagerPort=8042",
+        "--timeout=180.0"
+    ]
+    
+    
+
+    }
+  ]
+}

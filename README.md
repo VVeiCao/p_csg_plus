@@ -139,42 +139,108 @@ The important training arguments we have are following:
 Spin up a CARLA server (described above) and run the required agent. The adequate routes and scenarios files are provided in ```leaderboard/data``` and the required variables need to be set in ```leaderboard/scripts/run_evaluation.sh```.
 
 
-# Attack
+
 ## Dot Attack
 
-![dot](attack_image_output/rgb_left_ori.jpg)![dot](attack_image_output/rgb_ori.jpg)  
+![dot](figures/Attack/Dot.png)
 
-Above shows the results of dot attack of P_CSG, the first row is the original view, and the scond row are the dot attack views. To tain the dot of the dot attack, you can run the code 
+
+
+Above shows the results of dot attack of PCSG, Interfuser and Transfuser+.
+
+### PCSG Dot Attack
+To train the dot of the dot attack, you can run the code 
 
 ```bash
-python3 team_code/dot_train_pcsg.py --name [Name of your results folder]
+python3 team_code/dot_train_pcsg.py 
+--name [Name of your results folder]
+--logdir model_ckpts/ckpt_final
+--batch_size 32
 ```
-After the traininng, the model checkpoint will be saved in the ```attack/p_csg/logs/[Name of your results folder]```, to test the results of the dot attack, you can run
+After the traininng, the model checkpoint will be saved in the ```attack/p_csg/logs/[Name of your results folder]```. To test the results of the dot attack, you can run
 
 ```Shell
-CUDA_VISIBLE_DEVICES=0 ./leaderboard/scripts/run_evaluation_pcsg_dot_attack.sh  <carla root> <working directory>
+conda activate P_CSG
+DISPLAY= CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2002 --tm-port=8002 -opengl
 ```
 
-Note: you need to change the directory of your carla, and also, here we provide checkpoints of pretrained dot attack model, if you trained the model yourself, you need to change the directory of checkpoint in the script ```leaderboard/leaderboard/agents/p_csg_dot_attack.py```
+```Shell
+bash attack/p_csg/dot_attack.sh
+```
+
+Note: you need to change the directory of your carla in ```attack/p_csg/dot_attack.sh```, and also, here we use checkpoints of pretrained dot attack model by default, if you trained the model yourself, and want to use your own checkpoint, you need to change the directory of checkpoint in the script ```leaderboard/leaderboard/agents/p_csg_dot_attack.py (line 265)```
+
+### Interfuser Dot Attack
+To train the dot of the dot attack of Interfuser, please implement Interfuser and run the following script
+
+```bash
+python3 attack/InterFuser/interfuser/dot_train_interfuser_loss_attack.py
+
+```
+To test the results of the dot attack, you can use the agent
+
+```Shell
+attack/interfuser/agents/interfuser_agent_dot_attack.py
+```
+
+We provide the pretrained checkpoint in ```attack/interfuser/dot_ckpt```
+
+### Transfuser+ Dot Attack
+To train the dot of the dot attack of Interfuser, please implement Transfuser+ and run the following script
+
+```bash
+python3 attack/transfuserp/dot_train_transfuserp_loss_attack.py
+
+```
+To test the results of the dot attack, you can use the agent
+
+```Shell
+attack/interfuser/agents/transfuserp_agent_dot_attack.py
+```
+
+We provide the pretrained checkpoint in ```attack/transfuserp/dot_ckpt```
 
 
 
 ## FGSM Attack
 
-![dot](attack_image_output/rgb_left_ori.jpg)![dot](attack_image_output/rgb_ori.jpg)  
+![dot](figures/Attack/FGSM.png)
 
-Above shows the results of dot attack, the first row is the original view, and the scond row are the FGSM attack views
+Above shows the results of FGSM attack. Due to the low magnitude of the adversarial perturbation, distinguishing original from attacked one poses a challenge to human visual perception. This is also an advantage of FGSM attack.
+
+### PCSG FGSM Attack
 
 To test the FGSM attack, you can simply run
-```shell
-CUDA_VISIBLE_DEVICES=0 ./leaderboard/scripts/run_evaluation_pcsg_fgsm_attack.sh  <carla root> <working directory>
+```Shell
+conda activate P_CSG
+DISPLAY= CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=2002 --tm-port=8002 -opengl
 ```
-You need to change the directory of your carla,the default script run the experiment of FGSM Attack with the strength of 0.1.
 
-If you want to run the strength with 0.01, you need to change the the script to
-```shell
-export TEAM_AGENT=leaderboard/team_code/interfuser_agent_fgsm_001.py
+```Shell
+bash attack/p_csg/fgsm_attack.sh
 ```
+
+Note: you need to change the directory of your carla in ```attack/p_csg/fgsm_attack.sh```
+
+### Interfuser FGSM Attack
+
+To test the FGSM attack, you can use the agent
+
+```Shell
+attack/interfuser/agents/interfuser_agent_fgsm_attack_001.py
+```
+### Transfuser+ FGSM Attack
+
+To test the FGSM attack, you can use the agent
+
+```Shell
+attack/transfuserp/agents/transfuserp_agent_fgsm_attack_001.py
+```
+
+
+
+
+
 
 
 ## Ablation Study

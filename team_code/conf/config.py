@@ -93,6 +93,7 @@ class GlobalConfig:
 
         self.action_repeat = 2
         self.stuck_threshold = 1100 / self.action_repeat  # Number of frames after which the creep controller starts triggering. Divided by
+        self.block_threshold = 2200 / self.action_repeat
         self.creep_duration = 30 / self.action_repeat  # Number of frames we will creep forward
         self.default_speed = 4.0  # Speed used when creeping
 
@@ -106,8 +107,8 @@ class GlobalConfig:
         self.safety_box_x_min = -1.066
         self.safety_box_x_max = 1.066
         self.safety_box_n = 10     # the minimum number of points in safety_box indicating objects front.
-        self.save_frames = False  # if save frames, during the evaluation.
-        self.save_frequency = 5
+        # self.save_frames = True  # if save frames, during the evaluation.
+        # self.save_frequency = 5
 
         for k,v in kwargs.items():
             setattr(self, k, v)
