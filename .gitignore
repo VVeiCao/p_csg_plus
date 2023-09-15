@@ -185,6 +185,7 @@ model_ckpts
 carla
 frames
 attack/InterFuser/data
+figures/Attack
 
 # segmentation results
 topdown_img
