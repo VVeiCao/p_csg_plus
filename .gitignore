@@ -185,7 +185,7 @@ model_ckpts
 carla
 frames
 attack/InterFuser/data
-figures/Attack
+figures/Attack/backup
 data_collection_attack
 
 # segmentation results
