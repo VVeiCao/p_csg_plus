@@ -198,5 +198,6 @@ leaderboard/leaderboard/agents/backup
 leaderboard/data/evaluation_routes/routes_town05_long_vis.xml
 attack/InterFuser/leaderboard/team_code/backup
 attack/backup
+attack/run.txt
 
 upload_v21
