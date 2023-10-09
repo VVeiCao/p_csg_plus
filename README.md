@@ -1,5 +1,7 @@
 # Penalty-based Imitation Learning with Cross Semantics Generation Sensor Fusion for Autonomous Driving
 
+## [Paper](https://arxiv.org/abs/2309.07808) | [Project Page](https://hk-zh.github.io/p-csg-plus/)
+
 <img src="figures/Graph.png" height="300" hspace=30> 
 
 ## Contents
