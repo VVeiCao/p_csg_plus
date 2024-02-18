@@ -93,6 +93,26 @@ class GlobalConfig:
         self.brake_speed = 0.1 # desired speed below which brake is triggered
         self.brake_ratio = 1.1 # ratio of speed to desired speed at which brake is triggered
         self.clip_delta = 0.25 # maximum change in speed input to logitudinal controller
+
+        self.action_repeat = 2
+        self.stuck_threshold = 1100 / self.action_repeat  # Number of frames after which the creep controller starts triggering. Divided by
+        self.block_threshold = 2200 / self.action_repeat
+        self.creep_duration = 30 / self.action_repeat  # Number of frames we will creep forward
+        self.default_speed = 4.0  # Speed used when creeping
+        
+        # Size of the safety box
+        self.safety_box_z_min = -2.0
+        self.safety_box_z_max = -1.05
+
+        self.safety_box_y_min = -4.0
+        self.safety_box_y_max = 0.0
+
+        self.safety_box_x_min = -1.066
+        self.safety_box_x_max = 1.066
+        self.safety_box_n = 30     # the minimum number of points in safety_box indicating objects front.
+        self.save_frames = False  # if save frames, during the evaluation.
+        self.save_frequency = 5
+
         for k,v in kwargs.items():
             setattr(self, k, v)
 

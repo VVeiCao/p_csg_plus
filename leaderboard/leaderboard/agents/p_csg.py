@@ -15,7 +15,7 @@ from PIL import Image
 
 from leaderboard.autoagents import autonomous_agent
 from team_code.models.p_csg import P_CSG
-from team_code.conf.config import GlobalConfig
+from team_code.conf.leaderboard_config import GlobalConfig
 from team_code.dataset.utils import scale_and_crop_image, lidar_to_histogram_features, transform_2d_points, \
     img_pre_processing_org
 from planner import RoutePlanner
@@ -313,10 +313,10 @@ class PCSGAgent(autonomous_agent.AutonomousAgent):
             print("Detected agent being stuck. Move for frame: ", self.forced_move)
             is_stuck = True
             self.forced_move += 1
-        elif self.stuck_detector > self.config.block_threshold and self.forced_move < self.config.creep_duration:
-            is_stuck = True
-            self.forced_move += 1.25
-            self.emergency_stop = False
+        # elif self.stuck_detector > self.config.block_threshold and self.forced_move < self.config.creep_duration:
+        #     is_stuck = True
+        #     self.forced_move += 1.25
+        #     self.emergency_stop = False
 
 
 
@@ -348,8 +348,8 @@ class PCSGAgent(autonomous_agent.AutonomousAgent):
             control.throttle = float(0.0)
             control.brake = float(True)
 
-            output = self.unified[-1].squeeze(0).permute(1, 2, 0).cpu().numpy()
-            Image.fromarray(np.uint8(output)).save(pathlib.Path('/home/ubuntu/projects/p_csg_final/frames') / 'rgb' / ('%04d.png' % self.step))
+            #output = self.unified[-1].squeeze(0).permute(1, 2, 0).cpu().numpy()
+            #Image.fromarray(np.uint8(output)).save(pathlib.Path('/home/ubuntu/projects/p_csg_final/frames') / 'rgb' / ('%04d.png' % self.step))
 
         if self.config.save_frames and self.step % self.config.save_frequency == 0:
             self.save(tick_data)

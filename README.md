@@ -140,7 +140,9 @@ The important training arguments we have are following:
 ## Evaluation
 Spin up a CARLA server (described above) and run the required agent. The adequate routes and scenarios files are provided in ```leaderboard/data``` and the required variables need to be set in ```leaderboard/scripts/run_evaluation.sh```.
 
-
+```
+CUDA_VISIBLE_DEVICES=0 ./leaderboard/scripts/run_evaluation.sh  <carla root> <working directory>
+```
 
 ## Dot Attack
 
@@ -238,11 +240,6 @@ To test the FGSM attack, you can use the agent
 ```Shell
 attack/transfuserp/agents/transfuserp_agent_fgsm_attack_001.py
 ```
-
-
-
-
-
 
 
 ## Ablation Study
