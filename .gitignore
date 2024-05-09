@@ -174,10 +174,13 @@ input
 model_ckpt
 results
 run.sh
+birdview_v2_cache
 carla_data/*
 carla_data_new/*
 !carla_data/init_dir.py
-birdview_v2_cache
+!carla_data/prepare_light.py
+!carla_data/prepare_stopsign.py
+!carla_data/organize_files.py
 attack/InterFuser/leaderboard/data
 attack/InterFuser/leaderboard/team_code/interfuser.pth.tar
 attack/p_csg/logs/loss_attack_pcsg_final

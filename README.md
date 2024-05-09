@@ -52,14 +52,13 @@ The collected dataset is structured as follows:
         - 3d_bbs: 3d bounding boxes for different agents
         - affordances: different types of affordances
         - measurements: contains ego-agent's position, velocity and other metadata
+        - light: traffic light information
+        - stopsign: stop sign information
         - other_actors: contains the positions, velocities and other metadatas of surrounding vehicles and the traffic lights
 ```
 
-## Data Generation
-In addition to the dataset, we have also provided all the scripts used for generating data and these can be modified as required for different CARLA versions. The dataset is collected by a rule-based expert agent in differnet weathers and towns.
-
 ### Running CARLA Server
-#### With Display
+#### With Display (e.g. VNC)
 ```bash
 # start 8 carla servers: ip [localhost], port [20000 - 20014]
 cd carla
@@ -69,7 +68,7 @@ CUDA_VISIBLE_DEVICES=2 ./CarlaUE4.sh --world-port=20004 --tm-port=20504 &
 ...
 ```
 
-#### Without Display (e.g. VNC)
+#### Without Display 
 ```bash
 DISPLAY= CUDA_VISIBLE_DEVICES=0 ./CarlaUE4.sh --world-port=20000 --tm-port=20500 -opengl &
 DISPLAY= CUDA_VISIBLE_DEVICES=1 ./CarlaUE4.sh --world-port=20002 --tm-port=20502 -opengl &
@@ -111,10 +110,10 @@ bash data_collection/batch_run/weather-mixed/run_route3.sh
 ### Formalize collected data 
 ```
 cd carla_data
-python organize_files # organize files
+python organize_files # organize files, grouped by towns. 
 cd ..
-python carla_data/prepare_light.py # prepare red lights
-python carla_data/prepare_stopsign.py # prepare stop signs
+python carla_data/prepare_light.py # prepare red lights, remember to have Carla running and specify the port.
+python carla_data/prepare_stopsign.py # prepare stop signs, remember to have Carla running and specify the port.
 python team_code/data_processing.py # precessing data and make training faster
 ```
 
