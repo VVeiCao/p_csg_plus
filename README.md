@@ -1,5 +1,5 @@
 # What Matters to Enhance Traffic Rule Compliance of Imitation Learning for Automated Driving
-Accpted by European Conference on Computer Vision (ECCV) 2024 workshop (oral)
+Accpted by European Conference on Computer Vision (ECCV) 2024 oral (VCAD workshop)
 ## [Paper](https://arxiv.org/abs/2309.07808) | [Project Page](https://hk-zh.github.io/p-csg-plus/)
 
 <img src="figures/architecture.png" height="400" hspace=30> 
